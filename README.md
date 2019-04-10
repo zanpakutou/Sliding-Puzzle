@@ -6,6 +6,6 @@ Score'll be caculated by time.
 
 INSTRUCTION'll display on waiting screen !
 
-Must install SDL2, SDL_ttf.
+Must install SDL2, SDL2_ttf.
 
 GOOD LUCK :))
