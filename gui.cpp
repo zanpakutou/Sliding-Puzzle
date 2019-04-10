@@ -242,38 +242,39 @@ void update_score()
 void instruct()
 {
     SDL_Event event;
-    SDL_RenderClear(renderer);
-    std::string t ;
-    SDL_Color color = {0, 125, 125, 255};
-    SDL_Rect pos = {195, 100, 0, 0};
-    t = "->INSTRUCTION<-";
-    puts(t.c_str(), color, &pos);
-    pos = {180, 150, 0, 0};
-    t = "~[S] to get solution!";
-    puts(t.c_str(), color, &pos);
-    pos = {180, 200, 0, 0};
-    t = "~[R] to reset!";
-    puts(t.c_str(), color, &pos);
-    pos = {180, 250, 0, 0};
-    t = "~[B] to see score!";
-    puts(t.c_str(), color, &pos);
-    pos = {180, 300, 0, 0};
-    t = "~[ESC] to quit!";
-    puts(t.c_str(), color, &pos);
-    color = {0, 250, 125, 255};
-    pos = {155, 450, 0, 0};
-    t = "Press [SPACE] to continue...";
-    puts(t.c_str(), color, &pos);
 
-    SDL_SetRenderDrawColor(renderer, 250, 25, 50, 100);
-    pos = {170, 80, 240, 280};
-    SDL_RenderDrawRect(renderer,&pos);
-    SDL_RenderPresent(renderer);
-    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+    while(SDL_WaitEvent(&event)){
+        SDL_RenderClear(renderer);
+        std::string t ;
+        SDL_Color color = {0, 125, 125, 255};
+        SDL_Rect pos = {195, 100, 0, 0};
+        t = "->INSTRUCTION<-";
+        puts(t.c_str(), color, &pos);
+        pos = {180, 150, 0, 0};
+        t = "~[S] to get solution!";
+        puts(t.c_str(), color, &pos);
+        pos = {180, 200, 0, 0};
+        t = "~[R] to reset!";
+        puts(t.c_str(), color, &pos);
+        pos = {180, 250, 0, 0};
+        t = "~[B] to see score!";
+        puts(t.c_str(), color, &pos);
+        pos = {180, 300, 0, 0};
+        t = "~[ESC] to quit!";
+        puts(t.c_str(), color, &pos);
+        color = {0, 250, 125, 255};
+        pos = {155, 450, 0, 0};
+        t = "Press [SPACE] to continue...";
+        puts(t.c_str(), color, &pos);
 
-     while(SDL_WaitEvent(&event))
+        SDL_SetRenderDrawColor(renderer, 250, 25, 50, 100);
+        pos = {170, 80, 240, 280};
+        SDL_RenderDrawRect(renderer,&pos);
+        SDL_RenderPresent(renderer);
+        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
         switch (event.type)
         {
+
             case SDL_KEYDOWN:
                 switch(event.key.keysym.sym){
                     case SDLK_SPACE: return; break;
@@ -281,6 +282,7 @@ void instruct()
                 }
             break;
         }
+    }
 }
 int texting_leveling()
 {
@@ -339,7 +341,7 @@ int gui_main()
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
     if (renderer == nullptr) logSDLError(std::cout, "CreateRenderer", true);
 
-    int seed = rand() % 4 + 1;
+    int seed = rand()  * rand()% 4 + 1;
     SDL_Surface *image = SDL_LoadBMP(std::string(std::string("picture") + char(seed + '0') + ".bmp").c_str());
     texture = SDL_CreateTextureFromSurface(renderer, image);
     SDL_FreeSurface(image);
