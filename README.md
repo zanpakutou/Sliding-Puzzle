@@ -6,6 +6,6 @@ Score'll be caculated by time.
 
 INSTRUCTION'll display on waiting screen !
 
-Must install SDL2, SDL2_ttf.
+Must install SDL2, SDL2_ttf to run code, or just download the full_puzzle.rar to play.
 
 GOOD LUCK :))
