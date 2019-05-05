@@ -189,7 +189,7 @@ void score_board()
             default :
             {
                 SDL_RenderClear(renderer);
-                int time = SDL_GetTicks();
+                int time = SDL_GetTicks() - start;
                 int s = time/1000, m = s/60;
                 s = s % 60;
                 SDL_Color color = {0, 200, 120, 255};
@@ -221,7 +221,7 @@ void score_board()
 
 void update_score()
 {
-    int time = SDL_GetTicks();
+    int time = SDL_GetTicks() - start;
     int s = time/1000, m = s/60;
     std::vector< std::pair< int, int > > v;
 
@@ -345,7 +345,6 @@ int gui_main()
     SDL_Surface *image = SDL_LoadBMP(std::string(std::string("picture") + char(seed + '0') + ".bmp").c_str());
     texture = SDL_CreateTextureFromSurface(renderer, image);
     SDL_FreeSurface(image);
-
 
 
     if(TTF_Init() == -1) logSDLError(std::cout, "Init TTF", true);
